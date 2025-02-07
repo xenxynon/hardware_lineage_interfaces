@@ -2,14 +2,13 @@
 // THIS FILE IS IMMUTABLE. DO NOT EDIT IN ANY CASE.                          //
 ///////////////////////////////////////////////////////////////////////////////
 
-// This file is a snapshot of an AIDL file. Do not edit it manually. There are
-// two cases:
-// 1). this is a frozen version file - do not edit this in any case.
-// 2). this is a 'current' file. If you make a backwards compatible change to
-//     the interface (from the latest frozen version), the build system will
-//     prompt you to update this file with `m <name>-update-api`.
+// This file is a snapshot of an AIDL interface (or parcelable). Do not try to
+// edit this file. It looks like you are doing that because you have modified
+// an AIDL interface in a backward-incompatible way, e.g., deleting a function
+// from an interface or a field from a parcelable and it broke the build. That
+// breakage is intended.
 //
-// You must not make a backward incompatible change to any AIDL file built
+// You must not make a backward incompatible changes to the AIDL files built
 // with the aidl_interface module type with versions property set. The module
 // type is used to build AIDL files in a way that they can be used across
 // independently updatable components of the system. If a device is shipped
@@ -19,16 +18,16 @@
 package vendor.aac.hardware.richtap.vibrator;
 @VintfStability
 interface IRichtapVibrator {
-  void init(vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void setDynamicScale(int scale, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void setF0(int f0, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void stop(vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void setAmplitude(int amplitude, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void performHeParam(int interval, int amplitude, int freq, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void off(vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void on(int duration, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  int perform(int effect, byte enable, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void performEnvelope(in int[] envInfo, boolean fastFlag, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void performRtp(in ParcelFileDescriptor file, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
-  void performHe(int looper, int interval, int amplitude, int freq, in int[] data, vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void init(in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void setDynamicScale(in int scale, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void setF0(in int f0, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void stop(in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void setAmplitude(in int amplitude, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void performHeParam(in int interval, in int amplitude, in int freq, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void off(in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void on(in int timeoutMs, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  int perform(in int effect_id, in byte strength, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void performEnvelope(in int[] envInfo, in boolean fastFlag, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void performRtp(in ParcelFileDescriptor hdl, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
+  oneway void performHe(in int looper, in int interval, in int amplitude, in int freq, in int[] he, in vendor.aac.hardware.richtap.vibrator.IRichtapCallback callback);
 }
